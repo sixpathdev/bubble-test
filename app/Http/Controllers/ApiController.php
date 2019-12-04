@@ -8,15 +8,22 @@ use GuzzleHttp\Client;
 class ApiController extends Controller
 {
 
-    public function getbitcoindata() {
+    public function getbitcoindata()
+    {
+        //intialize the Guzzle client instance
         $clientApi = new Client();
 
+        //send get request to api
         $response = $clientApi->request('GET', 'https://api.coingecko.com/api/v3/coins/bitcoin');
+        //get statuscode
         $statusCode = $response->getStatusCode();
-        if($statusCode == 200) {
+        //Verify response is sucess
+        if ($statusCode == 200) {
+            //get body of the request
             $payload = $response->getBody()->getContents();
+            //decode the json data
             $payloadbody = json_decode($payload);
-            
+
             //Extracted data
             $extracted_data = [
                 'symbol' => $payloadbody->symbol,
@@ -29,17 +36,22 @@ class ApiController extends Controller
             // return json_encode($extracted_data);
             return view('bitcoin', compact('extracted_data'));
         }
-        
     }
 
     public function getbitcoinjson()
     {
+        //intialize the Guzzle client instance
         $clientApi = new Client();
 
+        //send get request to api
         $response = $clientApi->request('GET', 'https://api.coingecko.com/api/v3/coins/bitcoin');
+        //get statuscode
         $statusCode = $response->getStatusCode();
+        //Verify response is sucess
         if ($statusCode == 200) {
+            //get body of the request
             $payload = $response->getBody()->getContents();
+            //decode the json data
             $payloadbody = json_decode($payload);
 
             //Extracted data
@@ -58,18 +70,19 @@ class ApiController extends Controller
         }
     }
 
-
-
-
-
     public function getzcashdata()
     {
+        //intialize the Guzzle client instance
         $clientApi = new Client();
-
+        //send get request to api
         $response = $clientApi->request('GET', 'https://api.coingecko.com/api/v3/coins/zcash');
+        //get statuscode
         $statusCode = $response->getStatusCode();
+        //Verify response is sucess
         if ($statusCode == 200) {
+            //get body of the request
             $payload = $response->getBody()->getContents();
+            //decode the json data
             $payloadbody = json_decode($payload);
 
             //Extracted data
@@ -88,12 +101,18 @@ class ApiController extends Controller
 
     public function getzcashjson()
     {
+        //intialize the Guzzle client instance
         $clientApi = new Client();
-
+        //send get request to api
         $response = $clientApi->request('GET', 'https://api.coingecko.com/api/v3/coins/zcash');
+        //get statuscode
         $statusCode = $response->getStatusCode();
+
+        //Verify response is sucess
         if ($statusCode == 200) {
+            //get body of the request
             $payload = $response->getBody()->getContents();
+            //decode the json data
             $payloadbody = json_decode($payload);
 
             //Extracted data
